@@ -295,4 +295,5 @@ class SwitchController(ControllerBase):
     @route('switch', '/benchmark', methods=['GET'])
     def benchmark(self, req, **kwargs):
 
-        return Response(status=200)
+        match = parser.OFPMatch(eth_src="aa:aa:aa:bb:bb:bb")
+        actions = [parser.OFPActionSetField(eth_dst = "12:34:56:78:90:ab")]
