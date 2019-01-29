@@ -1,34 +1,23 @@
-from mininet.topo inport Topo
+
+from mininet.topo import Topo
 
 class MyTopo( Topo ):
-"Simple topology example"
+ "Simple topology example"
 
-# Initialize topology
-def __init__( self ):
+ def __init__( self ):
 
-# Add hosts and switches
-Host1 = self.addHost( 'h1' , ip='192.168.1.1' , mac='00:00:00:00:00:01' )
-Host2 = self.addHost( 'h2' , ip='192.168.1.2' , mac='00:00:00:00:00:02' )
-Host3 = self.addHost( 'h3' , ip='192.168.1.3' , mac='00:00:00:00:00:03' )
-Host4 = self.addHost( 'h4' , ip='192.168.1.4' , mac='00:00:00:00:00:04' )
-Host5 = self.addHost( 'h5' , ip='192.168.1.5' , mac='00:00:00:00:00:05' )
-Host6 = self.addHost( 'h6' , ip='192.168.1.6' , mac='00:00:00:00:00:06' )
-Host7 = self.addHost( 'h7' , ip='192.168.1.7' , mac='00:00:00:00:00:07' )
-Host8 = self.addHost( 'h8' , ip='192.168.1.8' , mac='00:00:00:00:00:08' )
-leftSwitch = self.addSwitch( 's1' , ip='192.168.1.11' , dpid='0000000000000001' )
-centerSwitch = self.addSwitch( 's2' , ip='192.168.1.12' , dpid='0000000000000002' )
-rightSwitch = self.addSwitch( 's3' , ip='192.168.1.13' , dpid='0000000000000003' )
+  # Initialize topology
+  Topo.__init__( self )
 
-# Add links
-self.addLink( leftSwitch, centerSwitch )
-self.addLink( centerSwitch, rightSwitch )
-self.addLink( Host1, leftSwitch )
-self.addLink( Host2, leftSwitch )
-self.addLink( Host3, centerSwitch )
-self.addLink( Host4, centerSwitch )
-self.addLink( Host5, centerSwitch )
-self.addLink( Host6, centerSwitch )
-self.addLink( Host7, rightSwitch )
-self.addLink( Host8, rightSwitch )
+  # Add hosts and switches
+  Host1 = self.addHost( 'h1' , ip='192.168.10.1' , mac='00:00:00:00:00:01' )
+  Host2 = self.addHost( 'h2' , ip='192.168.10.2' , mac='00:00:00:00:00:02' )
+  Host3 = self.addHost( 'h3' , ip='192.168.10.3' , mac='00:00:00:00:00:03' )
+  Switch1 = self.addSwitch( 's1' , ip='192.168.10.11' , dpid='0000000000000001' )
 
-topos = { 'mytopo': ( lamdba: MyTopo() ) }
+  # Add links
+  self.addLink( Host1, Switch1 )
+  self.addLink( Host2, Switch1 )
+  self.addLink( Host3, Switch1 )
+
+topos = { 'mytopo': ( lambda: MyTopo() ) }
